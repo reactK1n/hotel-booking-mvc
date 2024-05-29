@@ -1,0 +1,190 @@
+﻿@using hotel_booking_model.commons
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    SearchViewModel search = new SearchViewModel();
+}
+@model PaginationResponse<IEnumerable<ManagerModel>>;
+
+<div class="container">
+    <div class="d-flex align-items-center justify-content-between mb-0">
+        <h1 id="new-name">Managers</h1>
+    </div>
+
+    <div class="d-flex flex-row m-0 big-card flex-sm-column flex-lg-row" style="width:95%; height:95%; margin-right:30px">
+        <div class=" col-sm-12 col-md-10 col-lg-5">
+            <div class="card" style="height:100%;">
+                <div class="card-body card-description">
+                    <div class="d-flex align-items-center mb-4">
+                        <img class="card-image" src="@ViewBag.SingleManager.Avatar" alt="male">
+
+                        <div style="margin-left:10px;"><p>@ViewBag.SingleManager.FirstName &nbsp @ViewBag.SingleManager.LastName<br /><small>@ViewBag.SingleManager.Age, &nbsp @ViewBag.SingleManager.Gender</small></p></div>
+                    </div>
+                    <p class="card-subtitle mb-2 text-muted">Company: @ViewBag.SingleManager.CompanyName</p>
+                    <p class="card-subtitle mb-2 text-muted">Mobile: @ViewBag.SingleManager.BusinessPhone</p>
+                    <p class="card-subtitle mb-2 text-muted">Email: @ViewBag.SingleManager.BusinessEmail</p>
+                    <p class="card-subtitle mb-2 text-muted">Address: @ViewBag.SingleManager.CompanyAddress, @ViewBag.SingleManager.State</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-7" style="height: 100%">
+            <div class="card mb-2" style=" margin-bottom: 12px;">
+                <div class="card-body d-flex flex-column">
+                    <p class="card-subtitle mb-2 text-muted" style="margin-left:50px">Additional Records</p>
+                    <div class="d-flex justify-content-between">
+                        <div style="margin-left:50px">
+                            <div>
+                                <small class="card-subtitle mb-2 text-muted">Date joined</small>
+                                <p class="card-subtitle mb-2 text-muted">@ViewBag.SingleManager.CreatedAt.ToShortDateString()</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-right:100px;">
+                            <div>
+                                <small class="card-subtitle mb-2 text-muted">Last Updated</small>
+                                <p class="card-subtitle mb-2 text-muted">@ViewBag.SingleManager.UpdatedAt.ToShortDateString()</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-2" style=" margin-bottom: 12px; overflow: auto">
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td class="text-muted mb-2">Hotel Name</td>
+                                <td class="text-muted mb-2">Street</td>
+                                <td class="text-muted mb-2">City</td>
+                                <td class="text-muted mb-2">State</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < @ViewBag.SingleManager.TotalHotels; i++)
+                            {
+                                <tr class="text-muted mb-2">
+                                    <td>@ViewBag.SingleManager.HotelNames[i]</td>
+                                    <td>
+                                        @ViewBag.SingleManager.HotelStreet[i]
+                                    </td>
+                                    <td>
+                                        @ViewBag.SingleManager.HotelCity[i]
+                                    </td>
+                                    <td>
+                                        @ViewBag.SingleManager.HotelState[i]
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div>
+
+            </div>
+
+            <div class="card" style="">
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td class="card-subtitle mb-2 text-muted mb-2">Total Amount Generated</td>
+                                <td class="card-subtitle mb-2 text-muted mb-2">Account Number</td>
+                                <td class="card-subtitle mb-2 text-muted mb-2 ">Account Name</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="card-subtitle mb-2 text-muted mb-2">@ViewBag.SingleManager.TotalAmount</td>
+                                <td class="card-subtitle mb-2 text-muted mb-2">@ViewBag.SingleManager.AccountNumber</td>
+                                <td class="card-subtitle mb-2 text-muted mb-2">@ViewBag.SingleManager.AccountName</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container p-1 mt-2">
+        <div class="bg-white p-5">
+            <table class="table table-striped table-bordered shadow rounded caption-top">
+                <caption>
+                    <div class="w-100 d-flex justify-content-between">
+                        <div class="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M7 11h10v2H7zM4 7h16v2H4zm6 8h4v2h-4z"></path></svg>
+                        </div>
+
+                        <div class="">
+                            <div class="">
+                                <div class="">
+                                    <div class="d-flex">
+                                        <form class="d-none d-sm-none d-sm-flex d-md-flex d-lg-flex" method="post" asp-controller="Admin" asp-action="AllManagers">
+                                            <img src="~/images/strawberry menu.png" style="height:20px">
+                                            <div class="bg-#2067A1; px-4">
+                                                <input type="text" id="searchquery" name="searchquery" asp-for="@search.SearchQuery" Placeholder="Search">
+                                                <button type="submit" class="btn btn-sm blue__bg text-light"><i class='bx bx-search'></i></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </caption>
+                <thead>
+                    <tr class="text-muted">
+                        <th class="col">Manager Name</th>
+                        <th class="col">Email</th>
+                        <th class="col">Phone</th>
+                        <th class="col">No. of Hotels</th>
+                        <th class="col">...</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var managerr in Model.PageItems)
+                    {
+                        <tr class="text-muted">
+                            <td>
+                                @managerr.FirstName &nbsp @managerr.LastName <br />
+                            </td>
+                            <td class="hotel-description col">
+                                @managerr.ManagerEmail
+                            </td>
+                            <td class="col">@managerr.ManagerPhone</td>
+                            <td class="col">@ViewBag.SingleManager.TotalHotels</td>
+                            <td class="col">
+                                <a asp-controller="Admin" asp-action="AllManagers" asp-route-managerId=@managerr.ManagerId class="btn btn-sm blue__bg text-light" role="button">View</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <div class="col-10 mx-auto mb-5 d-flex justify-content-center">
+        <nav aria-label="Pagination">
+            <ul class="pagination justify-content-center">
+                @for (int i = 1; i <= Model.NumberOfPages; i++)
+                {
+                    if (i == Model.CurrentPage)
+                    {
+                        <li class="page-item active" aria-current="page">
+                            <span class="page-link" asp-route-pageNumber=@i style="background-color: #2067A1; border-color: #2067A1; ">@i</span>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item"><a class="page-link" asp-route-pageNumber=@i style="color:black" a>@i</a></li>
+                    }
+                }
+            </ul>
+        </nav>
+    </div>
+</div>

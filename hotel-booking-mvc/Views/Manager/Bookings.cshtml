@@ -1,0 +1,62 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Bookings";
+}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="py-2 border-bottom my-3">
+                <h1 class="fs-3">Bookings</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped table-bordered shadow rounded">
+                <caption>
+                    <div class="row">
+                        <div class="col-8">
+                            <span><small>Active Managers</small> <small>678/706</small></span>
+                        </div>
+                        <div class="col-2">
+                            <span><small>Rows Per Page: 10</small> <i class='bx bxs-down-arrow fs-6'></i></span>
+                        </div>
+                        <div class="col-2">
+                            <div class="w-100 d-flex justify-content-between">
+                                <i class='bx bx-chevron-left fs-3'></i>
+                                <i class='bx bx-chevron-right fs-3'></i>
+                            </div>
+                        </div>
+                    </div>
+                </caption>
+                <thead class="text-muted rounded-top">
+                    <tr class="rounded-top">
+                        <th scope="col">CUSTOMER NAME</th>
+                        <th scope="col">HOTEL</th>
+                        <th scope="col">SERVICE</th>
+                        <th scope="col">CHECKED IN</th>
+                        <th scope="col">CHECKED OUT</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @{
+                        for (int i = 0; i < 20; i++)
+                        {
+
+                            <tr>
+                                <td>Adamu Solomon</td>
+                                <td>Sheraton Hotel & Suites</td>
+                                <td>Room</td>
+                                <td>23/01/2021</td>
+                                <td>30/01/2021</td>
+                            </tr>
+                        }
+                    }
+                </tbody>             
+            </table>
+        </div>
+    </div>
+</div>

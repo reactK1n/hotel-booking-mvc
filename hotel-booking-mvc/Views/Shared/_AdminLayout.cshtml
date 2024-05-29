@@ -1,0 +1,164 @@
+﻿@using Microsoft.AspNetCore.Http;
+@using hotel_booking_model.Dtos.AuthenticationDtos;
+@using Newtonsoft.Json;
+@{
+    var loggedinUser = Context.Session.GetString("User");
+    var user = JsonConvert.DeserializeObject<AuthenticatedDto>(loggedinUser);
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Admin-Hotel-Booking-MVC</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css"/>
+    <link rel="stylesheet" href="~/css/allmanagers.css" />
+    <link rel="stylesheet" href="~/fontawesome-free-6.0.0-beta2-web/css/fontawesome.css" />
+    <link href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+    <link href="~/TavoCalendar-master/dist/tavo-calendar.css" rel="stylesheet" />
+    <link href="~/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body class="main override__margin" style="background: #F6FCFF;">
+    <nav class="navbar navbar-light bg-white flex-nowrap">
+        <div class="container-fluid">
+            <a class="navbar-brand text-center align-content-center " id="side" style="width: 40px; height: auto; background: #2067A1"><i class='bx bx-menu text-white'></i></a>
+            <div class="container">
+                <div class="d-sm-flex d-md-flex d-lg-flex justify-content-between flex-nowrap">
+                    <form class="d-none d-sm-none d-sm-flex d-md-flex d-lg-flex">
+                        <div class="input-group">
+                            <input class="form-control me-2 border-0 " style="background: #F6FCFF;" type="search" placeholder="Search" aria-label="Search">
+                            <label class="input-group-text border-0" style="background: #F6FCFF;"><i class='bx bx-search' style="color: #2067A1;"></i></label>
+                        </div>
+                    </form>
+                    <div class="d-flex justify-content-end">
+                        <div class="dropdown bg-white mr-1">
+                            <a class="btn  dropdown-toggle" href="#" style="color: #2067A1;" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                @user.FullName
+                            </a>
+                            <ul class="dropdown-menu " aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" asp-controller="Admin" asp-action="Account">Edit My Profile</a></li>
+                                <li><a class="dropdown-item" asp-controller="Auth" asp-action="Logout" >Signout</a></li>
+                            </ul>
+                        </div>
+                        <a>
+                            <img class="rounded-circle" src="@user.Avatar" onerror="this.src='~/images/default.png';this.onerror=null; " style="width: 35px; height: 35px;">
+       
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        @RenderBody()
+
+    </div>
+    <footer class="bg-white w-100 mt-5">
+
+        <div class="row p-3 d-flex justify-content-center">
+            <div class="col-12 text-center">
+                © @DateTime.Now.ToString("yyyy")
+                <a href="https://https://decagon.institute/" style="text-decoration: none; color: #2067a1">Decagon Hq.</a> All rights reserved
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <div class="sidebar m-0 p-0">
+        <ul>
+            <li>
+                <a class="text-center" asp-controller="LandingView" asp-action="Index">
+                    <div class="container-fluid row d-flex justify-content-center w-100 gx-0 " style="margin-top:15px; margin-bottom:15px;">
+                        <div class="col-12">
+                            <i class='bx bxs-home' style="font-size:30px;"></i>
+                        </div>
+                        <div class="col-12 text-center">
+                            <p>Home</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a class="text-center @(ViewContext.RouteData.Values["Action"].ToString() == "Dashboard" ? "active" : "")" asp-controller="Admin" asp-action="Dashboard">
+                    <div class="container-fluid row d-flex justify-content-center w-100 gx-0 " style="margin-top:15px; margin-bottom:15px;">
+                        <div class="col-12">
+                            <i class='bx bxs-dashboard' style="font-size:30px;"></i>
+                        </div>
+                        <div class="col-12 text-center">
+                            <p>Dashboard</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a class="text-center @(ViewContext.RouteData.Values["Action"].ToString() == "Hotel" ? "active" : "")" asp-controller="Admin" asp-action="Hotel">
+                    <div class="container-fluid row d-flex justify-content-center w-100 gx-0" style="margin-top:15px; margin-bottom:15px;">
+                        <div class="col-12">
+                            <i class='bx bxs-hotel' style="font-size:30px;"></i>
+                        </div>
+                        <div class="col-12 text-center">
+                            <p>Hotel</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a class="text-center  @(ViewContext.RouteData.Values["Action"].ToString() == "AllManagers" ? "active" : "")" asp-controller="Admin" asp-action="AllManagers">
+                    <div class="container-fluid row d-flex justify-content-center w-100 gx-0 " style="margin-top:15px; margin-bottom:15px;">
+                        <div class="col-12">
+                            <i class='bx bxs-user-rectangle' style="font-size:30px;"></i>
+                        </div>
+                        <div class="col-12 text-center">
+                            <p>Manager</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a class="text-center  @(ViewContext.RouteData.Values["Action"].ToString() == "Transactions" ? "active" : "")" asp-controller="Admin" asp-action="Transactions">
+                    <div class="container-fluid row d-flex justify-content-center  w-100 gx-0" style="margin-top:15px; margin-bottom:15px;">
+                        <div class="col-12">
+                            <i class='bx bx-money' style="font-size:30px;"></i>
+                        </div>
+                        <div class="col-12 text-center">
+                            <p>Transactions</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        let btn = document.querySelector("#side");
+        let sidebar = document.querySelector(".sidebar");
+        let main = document.querySelector(".main");
+        btn.onclick = function () {
+
+            sidebar.classList.toggle("show");
+            main.classList.toggle("show");
+        }
+    </script>
+
+    <script src=~/lib/jquery/dist/jquery.min.js></script>
+    <script src="~/js/charts.js"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    @*<script src="~/js/pie-chart.js"></script>*@
+    @*<script src="~/js/line-chart.js"></script>*@
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+    <script src="~/TavoCalendar-master/dist/tavo-calendar.js"></script>
+    <script src="~/js/calendar.js"></script>
+    <script src="~/js/date-picker.js"></script>
+    
+</body>
+</html>

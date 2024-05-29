@@ -1,0 +1,77 @@
+﻿body {
+}
+
+#new-name {
+    Font-family: Aribau Grotesk;
+    Font-style: normal;
+    Font-size: 40px;
+    text-align: Left;
+    Vertical-align: Top
+}
+
+.s-min {
+    Font-family: Inter;
+    Font-style: normal;
+    Font-size: 20px;
+    Line-height: 17px;
+    text-align: Left;
+    Vertical-align: Top;
+    color: #2E3B52
+}
+
+.card-image {
+    height: 100px;
+    width: 100px;
+    left: 374px;
+    top: 350px;
+    border-radius: 50px;
+}
+
+.big-card {
+    flex: 1;
+}
+
+.card-description {
+    Font-family: Aribau Grotesk;
+    Font-style: normal;
+    font-size: 18px;
+    text-align: Left;
+    Vertical-align: Top;
+}
+
+.hotel-id {
+    Font-family: Inter;
+    Font-style: normal;
+    Font-size: 15px;
+    Line-height: 15px;
+    Line-height: 100%;
+    text-align: Left;
+    Vertical-align: Top;
+    color: #606F89;
+}
+
+.hotel-name {
+    Font-family:;
+    Font-style: normal;
+    Font-size: 18px;
+    Line-height: 17px;
+    Line-height: 100%;
+    text-align: Left;
+    Vertical-align: Top;
+    color: #2E3B52;
+}
+
+.table-container {
+    background: #F4F7FC;
+}
+
+.search {
+    background: #DAE1EC;
+    width: 300px;
+    height:45px;
+}
+
+.hotel-description {
+}
+
+

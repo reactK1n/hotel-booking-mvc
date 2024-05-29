@@ -1,0 +1,423 @@
+﻿@model AddRoomTypeDto
+@{
+    HotelDetailsViewDTo SingleHotel = ViewData["GetHotel"] as HotelDetailsViewDTo;
+    IEnumerable<HotelCustomerDTO> customers = ViewData["Customers"] as IEnumerable<HotelCustomerDTO>;
+}
+
+<style>
+    .my-color {
+        background-color: #2067A1 !important;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <img class="img-fluid" style="width: 1250px; height: 520px;" src=@SingleHotel.Gallery.FirstOrDefault() />
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link blue__override active" id="rooms-tab" data-bs-toggle="tab" data-bs-target="#rooms" type="button" role="tab" aria-controls="rooms" aria-selected="true">Rooms</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link blue__override" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Reviews</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link blue__override" id="amenities-tab" data-bs-toggle="tab" data-bs-target="#amenities" type="button" role="tab" aria-controls="amenities" aria-selected="false">Amenities</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link blue__override" id="customers-tab" data-bs-toggle="tab" data-bs-target="#customers" type="button" role="tab" aria-controls="customers" aria-selected="false">Customers</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="rooms" role="tabpanel" aria-labelledby="home-tab">
+
+
+
+                        <div class="d-flex justify-content-between w-100 mt-4">
+                            <h6 class="mt-3 text-body">Room types</h6>
+
+                            <div class="wrapper__action_buttons d-flex flex-row align-self-end">
+                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#ModalRoomType">
+                                    Delete <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 25 25" fill="none">
+                                        <g clip-path="url(#clip0)">
+                                            <path d="M21.9579 0.778164L24.2236 3.04359C25.2587 4.0787 25.2586 5.76277 24.2236 6.79788C23.2489 7.77244 8.36227 22.658 7.36744 23.6527C7.26149 23.7587 7.12067 23.8297 6.98292 23.855L0.865747 24.9877C0.62859 25.0316 0.384987 24.956 0.214432 24.7854C0.0436802 24.6147 -0.0317593 24.371 0.0121365 24.1342L1.14499 18.0175C1.17136 17.8762 1.24304 17.7372 1.34729 17.633L18.2034 0.778164C19.2409 -0.259335 20.9203 -0.25948 21.9579 0.778164ZM1.64661 23.3534L5.34699 22.6682L2.33186 19.6533L1.64661 23.3534ZM2.90105 18.1509L6.84948 22.0991L21.2651 7.68455L17.3166 3.73636L2.90105 18.1509ZM19.2392 1.81395L18.3524 2.70062L22.3009 6.64881L23.1877 5.76214C23.6516 5.29822 23.6517 4.54339 23.1877 4.07938L20.9221 1.81395C20.457 1.34887 19.7043 1.34887 19.2392 1.81395Z" fill="#FF8788" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0">
+                                                <rect width="25" height="25" fill="white" transform="matrix(0 -1 -1 0 25 25)" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </button>
+                                <button type="button" class="btn btn-outline-dark ms-2" data-bs-toggle="modal" data-bs-target="#modalRoomType">
+                                    Add <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 25 25" fill="none">
+                                        <g clip-path="url(#clip0)">
+                                            <path d="M21.9579 0.778164L24.2236 3.04359C25.2587 4.0787 25.2586 5.76277 24.2236 6.79788C23.2489 7.77244 8.36227 22.658 7.36744 23.6527C7.26149 23.7587 7.12067 23.8297 6.98292 23.855L0.865747 24.9877C0.62859 25.0316 0.384987 24.956 0.214432 24.7854C0.0436802 24.6147 -0.0317593 24.371 0.0121365 24.1342L1.14499 18.0175C1.17136 17.8762 1.24304 17.7372 1.34729 17.633L18.2034 0.778164C19.2409 -0.259335 20.9203 -0.25948 21.9579 0.778164ZM1.64661 23.3534L5.34699 22.6682L2.33186 19.6533L1.64661 23.3534ZM2.90105 18.1509L6.84948 22.0991L21.2651 7.68455L17.3166 3.73636L2.90105 18.1509ZM19.2392 1.81395L18.3524 2.70062L22.3009 6.64881L23.1877 5.76214C23.6516 5.29822 23.6517 4.54339 23.1877 4.07938L20.9221 1.81395C20.457 1.34887 19.7043 1.34887 19.2392 1.81395Z" fill="black" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0">
+                                                <rect width="25" height="25" fill="white" transform="matrix(0 -1 -1 0 25 25)" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>                
+                        @foreach (var item in SingleHotel.RoomTypes)
+                        {
+                            <a class="hotel-card d-flex row" asp-action="HotelRooms" asp-controller="Manager" asp-route-roomTypeId=@item.Id>
+                                <div class="card mt-4">
+                                    <div class="row">
+                                        <div class="col-12 col-md-5">
+                                            <img class="img-fluid" src=@item.Thumbnail />
+                                        </div>
+                                        <div class="col-12 col-md-7">
+                                            <div class="card-body">
+                                                <h5 class="card-title">@item.Name</h5>
+                                                <div class="color__black__override">
+                                                    <small>size: 21m</small>
+                                                    <small class="mx-2">|</small>
+                                                    <small> <i class='bx bxs-user'></i> Max guests: 2 Adults, 1 Child</small>
+                                                </div>
+                                                <p class="color__black__override mt-2">
+                                                    @item.Description
+                                                </p>
+
+                                                <ul class="color__black__override">
+                                                    <li>Air Conditioning</li>
+                                                    <li>Satellite TV</li>
+                                                    <li>World Desk</li>
+                                                </ul>
+
+                                                <div class="d-flex flex-row justify-content-between align-items-end w-100">
+                                                    <div class="wrapper__icon__group color__black__override" style="font-size: 2em;">
+                                                        <i class='bx bx-wifi'></i>
+                                                        <i class='bx bx-desktop'></i>
+                                                        <i class='bx bxs-coffee'></i>
+                                                    </div>
+                                                    <div class="blue__bg text-white px-3 py-2 rounded-3">
+                                                        <span>@item.Price.ToString("C", CultureInfo.GetCultureInfo("en-NG"))<br /> Per Night</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                                                
+                            
+                    </div>
+                    <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="profile-tab">
+                        <h6 class="mt-3 text-body">Rating Overview</h6>
+                        <div class="row">
+                            <div class="col-12 col-md-4 mt-3">
+                                <div class="flex flex-column">
+                                    <div>
+                                        <small>Staff</small>
+                                        <div class="rating__bar__util w-100"></div>
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <small>Location</small>
+                                        <div class="rating__bar__util w-100"></div>
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <small>Value for money</small>
+                                        <div class="rating__bar__util w-100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 mt-3">
+                                <div class="flex flex-column">
+                                    <div>
+                                        <small>Facilities</small>
+                                        <div class="rating__bar__util w-100"></div>
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <small>Services</small>
+                                        <div class="rating__bar__util w-100"></div>
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <small>Food</small>
+                                        <div class="rating__bar__util w-100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 mt-3">
+                                <div class="flex flex-column">
+                                    <div>
+                                        <small>Cleaniness</small>
+                                        <div class="rating__bar__util w-100"></div>
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <small>Confort</small>
+                                        <div class="rating__bar__util w-100"></div>
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <small>Rooms</small>
+                                        <div class="rating__bar__util w-100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex w-100 justify-content-between mt-4">
+                            <h6 class="text-body">Recent Guest Review</h6>
+                            <div>
+                                <b class="text-body">Guest Rating</b>
+                            </div>
+                        </div>
+
+                        <div>
+                            @{
+                                for (int i = 0; i < 4; i++)
+                                {
+                                    <div class="card mt-4">
+                                        <div class="row">
+                                            <div class="col-12 col-md-2">
+                                                <div class="d-flex flex-column mt-3 ms-4">
+                                                    <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=880&q=80"
+                                                         class="rounded-circle"
+                                                         width="75"
+                                                         height="75" />
+                                                    <span class="color__black__override">Katrina Jade</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-10">
+                                                <div class="card-body">
+                                                    <div>
+                                                        <h5 class="card-title">"Best Hotel in Lagos"</h5>
+                                                        <div class="color__black__override">
+                                                            <span>
+                                                                @{
+                                                                    for (int j = 0; j < 5; j++)
+                                                                    {
+                                                                        <i class='bx bxs-star'></i>
+                                                                    }
+                                                                }
+                                                            </span>
+                                                            <span class="mx-2">|</span>
+                                                            <span><b>Reviewed: </b> <small>2021-06-12</small></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <p class="w-80 mt-4 color__black__override">
+                                                        Stayed here for 20 nights in March 2019. have been working in and around Lagos for the past 4 year-end this is by far the best hotel I have stayed in. The rooms, staff, cleanliness, internet and comfort offered by this hotel are second to none. I am currently (unfortunately) staying across the road in the Sheraton. Not a scratch on the Raddison Blu and so I will be returning there in June for another 20 nights!
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="amenities" role="tabpanel" aria-labelledby="amenities-tab">
+                        <div class="d-flex justify-content-between w-100 mt-4">
+                            <h6 class="mt-3">Amenities</h6>
+
+                            <div class="wrapper__action_buttons d-flex flex-row align-self-end">
+                                <button type="button" class="btn btn-outline-dark ms-2" data-bs-toggle="modal" data-bs-target="#modalAmenity">
+                                    Add <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 25 25" fill="none">
+                                        <g clip-path="url(#clip0)">
+                                            <path d="M21.9579 0.778164L24.2236 3.04359C25.2587 4.0787 25.2586 5.76277 24.2236 6.79788C23.2489 7.77244 8.36227 22.658 7.36744 23.6527C7.26149 23.7587 7.12067 23.8297 6.98292 23.855L0.865747 24.9877C0.62859 25.0316 0.384987 24.956 0.214432 24.7854C0.0436802 24.6147 -0.0317593 24.371 0.0121365 24.1342L1.14499 18.0175C1.17136 17.8762 1.24304 17.7372 1.34729 17.633L18.2034 0.778164C19.2409 -0.259335 20.9203 -0.25948 21.9579 0.778164ZM1.64661 23.3534L5.34699 22.6682L2.33186 19.6533L1.64661 23.3534ZM2.90105 18.1509L6.84948 22.0991L21.2651 7.68455L17.3166 3.73636L2.90105 18.1509ZM19.2392 1.81395L18.3524 2.70062L22.3009 6.64881L23.1877 5.76214C23.6516 5.29822 23.6517 4.54339 23.1877 4.07938L20.9221 1.81395C20.457 1.34887 19.7043 1.34887 19.2392 1.81395Z" fill="black" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0">
+                                                <rect width="25" height="25" fill="white" transform="matrix(0 -1 -1 0 25 25)" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Amenity</th>
+                                            <th scope="col">
+                                                <i class='bx bx-dots-horizontal-rounded'></i>
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @{
+                                            for (int i = 0; i < 5; i++)
+                                            {
+
+                                                <tr>
+                                                    <td>...</td>
+                                                    <td>Swimming Pool</td>
+                                                    <td class="text-muted fs-4">
+                                                        <i class='bx bxs-pencil'></i>
+                                                        <i class='bx bx-trash mx-2'></i>
+                                                        <i class='bx bx-dots-horizontal-rounded'></i>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="customers" role="tabpanel" aria-labelledby="customers-tab">
+                        <h6 class="mt-4">Customers</h6>
+                        <div class="row">
+                            <div class="col">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">First Name</th>
+                                            <th scope="col">Last Name</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Phone</th>
+                                            <th scope="col">Sex</th>
+                                            <th scope="col">Age</th>
+                                            <th scope="col">State</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @{
+                                            foreach (var customer in customers)
+                                            {
+
+                                                <tr>
+                                                    <td>...</td>
+                                                    <td>@customer.FirstName</td>
+                                                    <td>@customer.LastName</td>
+                                                    <td>@customer.Email</td>
+                                                    <td>@customer.PhoneNumber</td>
+                                                    <td>@customer.Gender</td>
+                                                    <td>@customer.Age</td>
+                                                    <td>@customer.State</td>
+
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Ammenities Modal -->
+<div class="modal fade" id="modalAmenity" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add a Service</h5>
+                <button type="button" class="btn-close my-color" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form>
+                    <div class="mb-3">
+                        <!-- <label for="formFile" class="form-label">Add Amenities Photos</label> -->
+                        <input class="form-control" type="file" id="formFile" name="Add Services" multiple>
+                    </div>
+                    <div class="input-group mb-3">
+
+                        <select class="form-select" id="inputGroupSelect01">
+                            <option selected>Service Type</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+
+                        <input type="text" class="form-control" id="Service Not Listed" name="Service Not Listed" placeholder="Service Not Listed" />
+                    </div>
+
+                    <div class="mb-3">
+
+                        <div class="form-outline">
+                            <textarea class="form-control" id="textAreaExample" name="Description" placeholder="Service Description" rows="4"></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3 form-check">
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary my-color">Add Amenities</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Room Type Modal -->
+<div class="modal fade" id="modalRoomType" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add a Room Type</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <!-- <label for="formFile" class="form-label">Add Room Type Photos</label> -->
+                        <input class="form-control" asp-for=@Model.Image type="file" id="formFile" name="Add Services" multiple>
+                    </div>
+
+                    <div class="mb-3">
+
+                        <input type="text" asp-for=@Model.RoomName class="form-control" id="Room Name" name="Room Name" placeholder="Room Name" />
+                    </div>
+
+                    <div class="mb-3">
+
+                        <input type="text" asp-for=@Model.Image class="form-control" id="Amount Per Night" name="Amount Per Night" placeholder="Amount Per Night" />
+                    </div>
+
+                    <div class="mb-3">
+
+                        <div class="form-outline">
+                            <textarea class="form-control" asp-for=@Model.Description id="textAreaExample" name="Description" placeholder="Room Description" rows="4"></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3 form-check">
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary my-color">Add</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

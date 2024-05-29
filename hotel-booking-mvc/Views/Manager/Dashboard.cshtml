@@ -1,0 +1,215 @@
+﻿@model ManagerDashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_ManagerLayout";
+}
+<div class="container">
+    <div class="row pt-5 pb-5">
+
+        <!--Available Rooms Card-->
+        <div class="col-md-3 mb-2">
+            <div class="card" style="border-radius:20px 20px;">
+                <div class="m-2">
+                    <div class="text-center col-12">
+                        <box-icon class="card-title" style=" margin-top: 5px;" size="md" color='#2067A1' name='bed'></box-icon>
+                    </div>
+                    <div class="col-12 text-center">
+                        <h1 class="card-title" style=" margin-bottom: 1px;">
+                            Available Rooms
+                        </h1>
+                    </div>
+                    <div class="card-body col-12 text-center">
+                        <h1 class="card-title" style="font-size: 30px;">
+                            @Model.Statistics.AvailableRooms
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Booked Rooms Card-->
+        <div class="col-md-3 mb-2">
+            <div class="card" style="border-radius:20px 20px;">
+                <div class="m-2">
+                    <div class="text-center col-12">
+                        <box-icon class="card-title" style=" margin-top: 5px;" size="md" color='#2067A1' name='bed'></box-icon>
+                    </div>
+                    <div class="col-12 text-center">
+                        <h1 class="card-title" style=" margin-bottom: 1px;">
+                            Booked Rooms
+                        </h1>
+                    </div>
+                    <div class="card-body col-12 text-center">
+                        <h1 class="card-title" style="font-size: 30px;">
+                            @Model.Statistics.BookedRooms
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Hotels Card-->
+        <div class="col-md-3 mb-2">
+            <div class="card" style="border-radius:20px 20px;">
+                <div class="m-2">
+                    <div class="text-center col-12">
+                        <box-icon class="card-title" style=" margin-top: 5px;" size="md" color='#2067A1' type='solid' name='bank'></box-icon>
+                    </div>
+                    <div class="col-12 text-center">
+                        <h1 class="card-title" style=" margin-bottom: 1px;">
+                            Hotels
+                        </h1>
+                    </div>
+                    <div class="card-body col-12 text-center">
+                        <h1 class="card-title" style="font-size: 30px;">
+                            @Model.Statistics.TotalHotels
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Total Transactions Card-->
+        <div class="col-md-3 mb-2">
+            <div class="card" style="border-radius:20px 20px;">
+                <div class="m-2">
+                    <div class="text-center col-12">
+                        <box-icon class="card-title" style=" margin-top: 5px;" size="md" color='#2067A1' type='regular' name='dollar'></box-icon>
+                    </div>
+                    <div class="col-12 text-center">
+                        <h1 class="card-title" style=" margin-bottom: 1px;">
+                            Total Transactions
+                        </h1>
+                    </div>
+                    <div class="card-body col-12 text-center">
+                        <h1 class="card-title" style="font-size: 30px;">
+                            @Model.Statistics.TotalMonthlyTransactions.ToString("C", CultureInfo.GetCultureInfo("en-NG"))
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Commission Statistics-->
+    <h4>Commission Statistics</h4>
+    <div class="Transaction-chart pt-2 pb-2 card">
+        <div class="row d-flex m-3">
+            <div class="container">
+                <canvas id="myLineChart" width="800" height="250"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!--Top Customers-->
+    <div class="mt-3">
+        <div class="m-0">
+            <h4>Top Customers</h4>
+        </div>
+        <div class="p-0 m-0 col-md-12 d-flex flex-row flex-wrap justify-content-between w-80">
+            @foreach (var customers in Model.TopCustomers)
+            {
+                var name = $"{customers.LastName}, {customers.FirstName}";
+                <div class="card p-3 m-0 mb-4 mr-4 col-sm-12 col-md-5">
+                    <div class="d-flex justify-content-center align-center">
+                        <div class="d-flex justify-content-center align-center">
+                            <img src=@customers.Avatar style="width:100px; height:100px; border-radius: 50%;" />
+                        </div>
+                        <div class="ms-md-1 d-flex row justify-content-evenly">
+                            <h2 class="card-text text-md-start w-100 text-sm-center">@name</h2>
+                            <p></p>
+                            <p class="mb-1">Number Of Times Customer Booked: <span style="color: #2067A1">@customers.NumberOfBookedTimes</span></p>
+                            @{ var amount = "₦ " + customers.TotalAmountSpent.ToString("N1", CultureInfo.InvariantCulture); }
+                            <p class="mb-0">Amount Of Money Spent: </p> <span class="mt-0" style="color: #2067A1">@amount</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+			const actions = [
+			    {
+			    name: 'Position: average',
+			    handler(chart) {
+				    chart.options.plugins.tooltip.position = 'average';
+				    chart.update();
+			    }},
+			    {
+			    name: 'Position: nearest',
+			    handler(chart) {
+				    chart.options.plugins.tooltip.position = 'nearest';
+				    chart.update();
+			    }},
+			    {
+			    name: 'Position: bottom (custom)',
+			    handler(chart) {
+				    chart.options.plugins.tooltip.position = 'bottom';
+				    chart.update();
+                    }
+                }
+            ];
+
+            function RearrangeMonths(arr, n){
+				if(arr.length - 1 !== n){
+					let rightArr = arr.slice(0, n+1);
+					let leftArr = arr .slice(n - arr.length + 1);
+					return leftArr.concat(rightArr);
+				}
+				else {
+					return arr;
+				}
+
+			}
+
+            function charting() {
+            // Variables
+            var months = @Html.Raw(Model.Statistics.Months);
+            var revenues = @Html.Raw(Model.Statistics.Revenues);
+            let date = new Date();
+			let currentMonth = date.getMonth();
+
+            // Line Chart
+            var ctx_line = document.getElementById("myLineChart").getContext("2d");
+            var transactionChart = new Chart(ctx_line, {
+                type: 'line',
+                data: {
+                    labels: RearrangeMonths(months, currentMonth),
+                    datasets: [{
+                        data: RearrangeMonths(revenues, currentMonth),
+                        backgroundColor: [
+                            '#FFBB33',
+                        ],
+                        borderColor: [
+                            '#2067A1',
+                        ],
+                        borderWidth: 1,
+                        fill: true
+                    }]
+                },
+                options: {
+                    scale: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    legend: {
+                        display: false
+                    },
+                    plugins: {
+                        title: {
+                            display: true
+                        },
+                    }
+                }
+            });
+        }
+        charting();
+    </script>
+}
+

@@ -1,0 +1,92 @@
+
+
+/***LAWRENCE CHANGES*/
+
+.transaction-search {
+    background: #DAE1EC;
+    width: 300px;
+    height: 40px;
+    background-image: url('/images/search.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    text-indent: 20px;
+    padding: 5px 3px;
+    transition: 0.3s;
+}
+.transaction-search:focus {
+    background-image: none;
+    text-indent: 0px
+}
+.up-down-arrow-icon{
+    display:flex;
+    flex-direction:column;
+    
+}
+
+.up-down-arrow-icon > img{
+    height: 15px;
+}
+
+.header-of-up-down-arrow > span {
+    padding-top: 1rem;
+    padding-bottom: 0;
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+
+#service-name, #transaction-reference, #status, #amount, #commission {
+    white-space: nowrap;
+}
+
+
+.btn-state {
+    height: 30px;
+    border-radius: 20px;
+    color: white;
+    font-size: 1em;
+    width: 80px;
+}
+.isInactive {
+    background-color: white;
+    color: black;
+}
+
+.isActive {
+    background-color: rgb(109, 170, 235);
+    color: white;
+}
+#edit-delete-etc{
+    display:flex;
+}
+#table-footer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+#active-customers{
+    margin-right: 10%;
+    margin-left: 30px;
+    width: 300px;
+    white-space: nowrap;
+}
+#rows-per-page {
+    margin-right: 10%;
+    white-space: nowrap;
+    margin-left:auto;
+}
+#paging {
+    margin-right: 10%;
+    white-space: nowrap;
+}
+
+#direction-images {
+    display: flex;
+    flex-direction: row;
+    padding-top: .6em;
+    white-space: nowrap;
+}
+#left-arrow{
+    margin-right: 50px;
+}
+#right-arrow {
+}

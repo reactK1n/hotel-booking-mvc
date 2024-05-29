@@ -1,0 +1,236 @@
+﻿
+
+/* Global Styling */
+
+@font-face {
+    font-family: "Aribau Grotesk";
+    font-style: normal;
+    font-weight: normal;
+    src: url("/Fonts/AribauGrotesk-Regular.ttf");
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+    background-color: #f6fcff;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 120px;
+    background: #2067A1;
+    opacity: 1;
+    transition: all 0.5s ease;
+}
+
+body {
+    font-family: 'Aribau Grotesk', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+    position: relative;
+    min-height: 100vh;
+    overflow: auto;
+}
+
+.main {
+    width: calc(100% - 120px);
+    left: 120px;
+    opacity: 1;
+    transition: all 0.4s ease;
+}
+
+    .main.show {
+        width: 100%;
+        left: 0px;
+        transition: all 0.4s ease;
+    }
+
+.sidebar.show {
+    width: 0px;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.sidebar ul {
+    margin-top: 50px;
+    padding-left: 0px;
+}
+
+    .sidebar ul li {
+        height: 50px;
+        width: 100%;
+        list-style: none;
+        margin-bottom: 70px;
+        cursor:auto;
+    }
+
+        .sidebar ul li a {
+            color: #fff;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.4s ease;
+        }
+
+            .sidebar ul li a:hover {
+                color: #2067A1;
+                background: #fff;
+                width: 100%;
+            }
+
+            .sidebar ul li a.active {
+                color: #2067A1;
+                background: #fff;
+                width: 100%;
+            }
+
+        .sidebar ul li i {
+            height: 50px;
+            width: 100%;
+            line-height: 50px;
+            text-align: center;
+        }
+
+    @media(max-width:700px) {
+
+    .main {
+        width: calc(100% - 120px);
+        left: 120px;
+        opacity: 1;
+        transition: all 0.4s ease;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 120px;
+        background: #2067A1;
+        opacity: 1;
+        transition: all 0.5s ease;
+    }
+
+    .main.show {
+        width: 100%;
+        left: 0px;
+        transition: all 0.4s ease;
+    }
+
+    .sidebar.show {
+        width: 0px;
+        opacity: 0;
+        transition: all 0.4s ease;
+    }
+}
+
+/* Admin Dashboard Styling */
+#calendar_cancel {
+    color: #333333;
+    width: 81.2px;
+    height: 27.4px;
+    background: #fff;
+    border: 1px solid #2067A1;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+#calendar_done {
+    color: #A5A6F6;
+    width: 81.2px;
+    height: 27.4px;
+    background: #2067A1;
+    border: 1px solid #2067A1;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.hotels-location {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    margin-left: 3px;
+    color: #000;
+}
+
+.card-text {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 31px;
+    color: #2067A1;
+    width: 231px;
+    left: 444px;
+    margin-left: 3px;
+    justify-content: center;
+}
+
+.card {
+    background: #FFF;
+    border: 1px solid #EBEBEB;
+    box-sizing: border-box;
+    border-radius: 13px;
+}
+
+.card-body {
+    color: #2067A1;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+    border-bottom: 0;
+    color: #000043;
+}
+
+.card-title {
+    font-family: ABeeZee;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.recovery-instruction {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: #2067A1;
+}
+
+.images {
+    padding-left: 50px;
+}
+
+.content-area {
+    width: 498px;
+    height: 624px;
+}
+
+
+
+#total {
+    width: 16px;
+    height: 16px;
+    left: 684px;
+    top: 33px;
+    border: 1.5px solid #2067A1;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.btn-lg {
+    background-color: #2067A1;
+    height: 65px;
+    color: #FFF
+}
+
+.linechart__datepicker {
+    border: none;
+    color: #173752;
+}
+
+a {
+    text-decoration:none;
+}

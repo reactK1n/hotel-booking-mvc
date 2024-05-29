@@ -1,0 +1,110 @@
+﻿:root {
+    --off-white: rgba(23, 55, 82, 6%);
+    --off-green: rgba(0, 178, 139, 0.1);
+    --green: rgba(0, 178, 139, 1);
+}
+
+/* CSS for Error page */
+@font-face {
+    font-family: 'Monda';
+    src: url("/Fonts/Monda-Bold.ttf");
+}
+
+h1.bold-font {
+    font-family: 'Monda';
+    color: #2067a1;
+    font-size: 90px;
+    display: block;
+}
+
+h3.bold-font-sm {
+    font-family: 'Monda';
+    color: #2067a1f1;
+}
+
+p.bold-font.p {
+    font-family: 'Monda';
+    color: #2067a183;
+}
+
+.bg {
+    background: url("/bg-circle.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/*.card {
+    background: #F6FCFF;
+    background: url("/bg-circle.svg");
+
+}*/
+
+
+/*-----Hotel details utils------*/
+.slider__util {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+}
+
+.slider__util > div {
+    scroll-snap-align: start;
+}
+
+.slider__util::-webkit-scrollbar {
+    display: none;
+}
+
+.container__hotel__service__card {
+    background-color: var(--off-white);
+}
+
+ 
+.flow-vr > * + * {
+    margin-top: 1.2rem;
+}
+
+.flow-hr > * + * {
+    margin-left: .7rem;
+}
+
+.border__thin__util {
+    border-right: 1px solid rgba(23, 55, 82, 0.26) !important;
+}
+
+.rating__btn__util {
+    color: var(--green);
+    background-color: var(--off-green);
+    border-radius: 20px;
+    padding: 4px 20px;
+}
+
+
+.rating__bar__util {
+    height: 6px !important;
+    border-radius: 2px !important;
+    background-color: rgba(229,229,229,1) !important;
+    background: linear-gradient(90deg, rgba(0,53,128,1) 62%, rgba(229,229,229,1) 66%) !important;
+}
+
+.color__black__override {
+   color: #1c1c1c !important;
+}
+
+.blue__override {
+    color: #2067A1 !important;
+}
+
+.blue__bg {
+    background-color: #2067A1 !important;
+}
+
+.height__100 {
+    min-height: 100vh;
+}

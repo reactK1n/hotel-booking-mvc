@@ -1,0 +1,65 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model hotel_booking_model.Dtos.AuthenticationDtos.UserDto
+<div class="container">
+    <div class="row d-flex justify-content-center align-items-center mt-5">
+        <div class="col-sm-12 col-md-8 col-lg-8">
+            <div class="card w-100 m-5 bg-white">
+                @using (Html.BeginForm("Account", "Admin", FormMethod.Post, new { novalidate = "true", @class = "needs-validation" }))
+                {
+                    <div class="bg-white m-5">
+                        <div class="form-group mb-2">
+
+                            @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control has-validation", @placeholder = "First Name", @required = "required" })
+
+                            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "badge bg-danger" })
+
+                            @if (ViewBag.error != null)
+
+                            {
+
+                                <span class="badge bg-danger">@ViewBag.error</span>
+
+                            }
+                        </div>
+                        <div class="form-group mb-2">
+
+                            @Html.TextBoxFor(x => x.LastName, new { @class = "form-control has-validation", @placeholder = "Last Name", @required = "required" })
+
+                            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "badge bg-danger" })
+
+                            @if (ViewBag.error != null)
+
+                            {
+
+                                <span class="badge bg-danger">@ViewBag.error</span>
+
+                            }
+                        </div>
+
+                        <div class="form-group mb-2">
+
+                            @Html.TextBoxFor(x => x.Phone, new { @class = "form-control has-validation", @placeholder = "Enter Phone Number", @required = "required", @type = "text", @value = "" })
+
+                            @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "badge bg-danger" })
+
+                            @if (ViewBag.error != null)
+
+                            {
+
+                                <span class="badge bg-danger">@ViewBag.error</span>
+
+                            }
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <input type="submit" value="Save" class="btn btn-primary form-control btn-block" />
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

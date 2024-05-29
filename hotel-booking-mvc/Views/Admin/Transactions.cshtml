@@ -1,0 +1,108 @@
+﻿@model TransactionsResponseDto
+@{
+	ViewData["Title"] = "Transactions";
+	SearchViewModel search = new SearchViewModel();
+}
+<style>
+	.page-link {
+		color: #2067A1;
+	}
+
+	.page-link:hover {
+		color: #2067A1;
+	}
+
+	.active{
+		color: #ffffff;
+		background: #2067A1;
+	}
+
+	.active:hover{
+		color: #ffffff;
+		background: #2067A1;
+	}
+
+</style>
+<div class="container-fluid mt-5 p-3">
+	<div class="row">
+		<div class="card">
+			<div class="card-body">
+
+				<div id="transaction mb-5">
+					<div id="search-bar-row">
+						<div class="d-sm-flex d-md-flex d-lg-flex justify-content-between flex-nowrap">
+							<div id="search-bar-row">
+								<div class="first-col">
+									<form class="d-none d-sm-none d-sm-flex d-md-flex d-lg-flex" method="post" asp-controller="Admin" asp-action="Transactions">
+										<img src="~/images/strawberry menu.png" style="height:20px">
+										<div class="bg-#2067A1; px-4">
+											<input type="text" id="searchquery" name="searchquery" asp-for="@search.SearchQuery" Placeholder="Search by Hotel">
+											<button type="button" class="btn"><i class='bx bx-search'></i></button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="second-third-col"></div>
+				</div>
+				<div id="label-row">
+					<table class="table table-striped mt-4">
+						<thead>
+							<tr>
+								<th scope="col">NAME<img src="~/images/up-down.png" style="height:20px"></th>
+								<th scope="col">SERVICE NAME</th>
+								<th scope="col">TRANSACTION REFERENCE</th>
+								<th scope="col">STATUS<img src="~/images/up-down.png" style="height:20px"></th>
+								<th scope="col">AMOUNT(&#8358)</th>
+								<th scope="col">COMMISSION(&#8358)</th>
+								<th scope="col"><img src="~/images/three dots.png" style="height:20px"></th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var transaction in Model.data.pageItems)
+							{
+								<tr>
+									<td>@transaction.customerName</td>
+									<td>@transaction.serviceName</td>
+									<td>@transaction.bookingReference</td>
+									<td>
+										@if (transaction.paymentStatus == "True")
+										{
+											<button class="btn btn-primary btn-sm" style="border-radius: 15px; border: 2px solid; width: 80px; background: #2067A1">PAID</button>
+										}
+										else
+										{
+											<button class="bg-white btn btn-sm" style="border-radius: 15px; border: 1px solid; border-color: #2067A1; color: #2067A1; width: 80px;">UNPAID</button>
+										}
+									</td>
+									<td>@transaction.paymentAmount.ToString("C", CultureInfo.GetCultureInfo("en-NG"))</td>
+									<td>@transaction.commission.ToString("C", CultureInfo.GetCultureInfo("en-NG"))</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div> <!-- END label row -->
+				<nav aria-label="Page navigation example">
+					<ul class="pagination justify-content-center">
+						@{
+							for (var i = 1; i <= @Model.data.numberOfPages; i++)
+							{
+								if(Model.data.currentPage == i)
+								{
+									<li class="page-item"><a class="page-link active" id="pageButton" asp-route-pageNumber=@i>@i <span class="sr-only">(current)</span></a></li>
+								}
+								else
+								{
+									<li class="page-item"><a class="page-link" id="pageButton" asp-route-pageNumber=@i>@i</a></li>
+								}
+							}
+						}
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+
+

@@ -1,0 +1,94 @@
+
+@model hotel_booking_model.Dtos.AuthenticationDtos.LoginDto
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+<div class="container-fluid m-0 p-0">
+    <div class="row p-0 m-0">
+        <div class="col-lg-5 col-md-5 d-none d-sm-none d-sm-flex d-md-flex d-lg-flex m-0 p-0">
+            <img src="~/images/Login.png" alt="login" class="img-fluid" />
+        </div>
+
+        <div class="col-sm-12 col-lg-7 mt-sm-4">
+
+            <div class="container">
+                <div class="row mx-auto justify-content-center mt-5">
+                    <div class="col-sm-12 col-md-9 col-lg-9">
+                      <div class="row mb-3 ">
+                          <div class="col-12 d-flex justify-content-center align-content-center" >
+                              <div class="text-center align-content-center" style="width:80px; height:80px; border-radius:50px; background:#fff">
+                                  <img src="~/images/logos_only_dark.svg" style="width:40px; height:40px; margin-top:20px" alt="Alternate Text" />
+                              </div>
+                          </div>
+                      </div>
+                          
+
+                       
+                        <div class="card p-5 border-0">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-1 ">
+                                    <p>Don't have an account?</p>
+                                    <a asp-controller="Auth" asp-action="Signup" class="d-flex justify-content-end align-content-end">Signup <i class='bx bx-right-arrow-alt'></i></a>
+                                </div>
+                                <div class="text-danger" asp-validation-summary="All"></div>
+                                @using (Html.BeginForm("Login", "Auth", FormMethod.Post, new { novalidate = "true", @class = "needs-validation" }))
+                                {
+
+                                <div class="form-group mb-2">
+
+                                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control has-validation", @placeholder = "Email", @required = "required" })
+
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "badge bg-danger" })
+
+                                    @if (ViewBag.error != null)
+
+                                        {
+
+                                    <span class="badge bg-danger">@ViewBag.error</span>
+
+                                        }
+                                </div>
+                                
+                             
+                                <div class="form-group mb-2">
+
+                                    @Html.TextBoxFor(x => x.Password, new { @class = "form-control has-validation", @placeholder = "Password", @required = "required", type="Password" })
+
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "badge bg-danger" })
+
+                                    @if (ViewBag.error != null)
+
+                                        {
+
+                                    <span class="badge bg-danger">@ViewBag.error</span>
+
+                                        }
+                                </div>
+                                <div class="form mt-3">
+                                    <input type="submit" value="Login" class="btn btn-primary form-control btn-block" />
+                                </div>
+
+
+
+                                }
+
+
+                               <div class="d-flex justify-content-between m-2 ">
+                                    <a asp-controller="LandingView" asp-action="index" p-2><i class='bx bx-arrow-back'></i> Back</a>
+                                    <a href="/Auth/ForgotPassword">Forgot Password?</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,114 @@
+﻿@model MgrReqViewModel
+
+
+
+@{
+    ViewData["Title"] = "Manager Request";
+}
+
+    <div>
+        <div class="row justify-content-center" style="height: 100vh;">
+            <div class="col-md-6 bg-image">
+                <img src="~/images/mgr-req.jpg" alt="mgr-request" class="img-fluid" style="height: 100vh; width: 100%; object-fit: cover;"/>
+            </div>
+
+            <div class="col-md-6 mt-5" id="mgrLoginFomr-container">
+
+                <div>
+                    <div class="row mx-auto justify-content-center">
+                        <div class="col-sm-12 col-md-12 col-lg-10">
+                            <div class="row mb-3 ">
+                                <div class="col-12 d-flex justify-content-center align-content-center">
+                                    <div class="text-center align-content-center" style="width:80px; height:80px; border-radius:50px; background:#fff">
+                                        <img src="~/images/logos_only_dark.svg" style="width:40px; height:40px; margin-top:20px" alt="Alternate Text" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="card p-sm-2 p-md-3 p-lg-5 border-0" id="mgrLoginForm" style="
+                                background-image: linear-gradient(135deg, rgb(24,42,115) 0%, rgb(33,138,174) 69%, rgb(32, 167,172) 89%) !important;
+                                box-shadow: 0 1px 2px 0 rgb(34 36 38 / 15%)"
+                             >
+                                <div class="card-body">
+                                    <div class="text-center mb-5">
+                                        <p style="color: #fff; font-size: 18px; font-weight:bold; padding: 5px 0">
+                                            Please Input Required Details to Register as a Manager
+                                        </p>
+                                        <!--<a asp-controller="Auth" asp-action="Signup" class="d-flex justify-content-end align-content-end">--><!---Signup <i class='bx bx-right-arrow-alt'></i>-----><!--</a>-->
+                                    </div>
+                                    <div class="text-danger" asp-validation-summary="All"></div>
+                                    @using (Html.BeginForm("request", "Manager", FormMethod.Post, new { novalidate = "true", @class = "needs-validation" }))
+                                    {
+
+                                        <div class="form-group mb-2" style="border-style:none;">
+
+                                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control has-validation", @style="outline:none !important; border: 0px !important;", @placeholder = "Email", @required = "required" })
+
+                                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "badge bg-danger" })
+
+                                            @if (ViewBag.error != null)
+
+                                            {
+
+                                                <span class="badge bg-danger">@ViewBag.error</span>
+
+                                            }
+                                        </div>
+
+                                        <div class="form-group mb-2">
+
+                                            @Html.TextBoxFor(x => x.Address, new { @class = "form-control has-validation", @placeholder = "Address", @required = "required" })
+
+                                            @Html.ValidationMessageFor(m => m.Address, "", new { @class = "badge bg-danger" })
+
+                                            @if (ViewBag.error != null)
+
+                                            {
+
+                                                <span class="badge bg-danger">@ViewBag.error</span>
+
+                                            }
+                                        </div>
+
+
+
+                                        <div class="form-group mb-2">
+
+                                            @Html.TextBoxFor(x => x.HotelName, new { @class = "form-control has-validation", @placeholder = "HotelName", @required = "required" })
+
+                                            @Html.ValidationMessageFor(m => m.HotelName, "", new { @class = "badge bg-danger" })
+
+                                            @if (ViewBag.error != null)
+
+                                            {
+
+                                                <span class="badge bg-danger">@ViewBag.error</span>
+
+                                            }
+                                        </div>
+                                        <div class="form mt-3">
+                                            <input type="submit" style="font-weight:900" value="Make Request" class="btn btn-primary form-control btn-block" />
+                                        </div>
+
+                                        <div class="d-flex justify-content-between m-2 float-right">
+                                            <a asp-controller="LandingView" asp-action="index" p-2  style="color: black; font-weight: 900;"><i class='bx bx-arrow-back'  style="color:black; font-weight:900"></i> Back</a>
+                                        </div>
+
+                                    }
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+

@@ -1,0 +1,363 @@
+﻿@model AdminDashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<style>
+    .star-color {
+        color: #FFDF00 !important;
+    }
+</style>
+
+<div class="container pb-5">
+    <div class="row pt-5 pb-5">
+        <div class="col-md-3 mb-sm-2">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        Managers
+                    </h2>
+                    <i class='bx bx-dots-horizontal-rounded'></i>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">
+                        @Model.TotalManagers
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-sm-2">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        Hotels
+                    </h2>
+                    <i class='bx bx-dots-horizontal-rounded'></i>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">
+                        @Model.TotalHotels
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-sm-2">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        Transactions
+                    </h2>
+                    <i class='bx bx-dots-horizontal-rounded'></i>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">
+                        @Model.TotalMonthlyTransaction.ToString("C", CultureInfo.GetCultureInfo("en-NG"))
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-sm-2">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        Commission
+                    </h2>
+                    <h2 class="card-title">
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                    </h2>
+                </div>
+                <div class="card-body d-flex justify-content-between">
+                    <h2 class="card-title">
+                        @Model.TotalMonthlyCommission.ToString("C", CultureInfo.GetCultureInfo("en-NG"))
+                    </h2>
+                    <h2 class="card-title">
+                        +1%
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pt-3 pb-5">
+        <div class="card card-body">
+            <h2 class="card-header">
+                Top Hotels
+            </h2>
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            @foreach (var hotel in Model.TopHotels.Take(3))
+                            {
+                                <div class="col-md-4">
+                                    <div class="hotel-card">
+                                        <div class="card-body">
+                                            <a asp-action="HotelDetails" asp-controller="Admin" asp-route-hotelId=@hotel.Id>
+                                                <img src="@hotel.Thumbnail" class="card-img-top" style="height:250px" alt="@hotel.Name" />
+                                                <h2 class="card-text mt-2">
+                                                    @hotel.Name
+                                                </h2>
+                                                <p class="hotels-location">@(String.Format("{0}, {1} {2}", @hotel.Address, @hotel.City, @hotel.State))</p>
+                                            </a>
+                                            <span class="stars">
+                                                @for (int i = 1; i <= 5; i++)
+                                                {
+                                                    var rating = hotel.PercentageRating / 20;
+                                                    if (i <= rating)
+                                                    {
+                                                        <i class="fa fa-star star-color"></i>
+                                                    }
+                                                    else if (i > rating && (rating % 1) > 0 && i == ((int)rating + 1))
+                                                    {
+                                                        <i class="fas fa-star-half-alt star-color mr-1"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="far fa-star star-color mr-1"></i>
+                                                    }
+                                                }
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            @foreach (var hotel in Model.TopHotels.Skip(2))
+                            {
+                                <div class="col-md-4">
+                                    <div class="hotel-card">
+                                        <div class="card-body">
+                                            <a asp-action="HotelDetails" asp-controller="Admin" asp-route-hotelId=@hotel.Id>
+                                                <img src="@hotel.Thumbnail" class="card-img-top" style="height:250px" alt="@hotel.Name" />
+                                                <h2 class="card-text mt-2">
+                                                    @hotel.Name
+                                                </h2>
+                                                <p class="hotels-location">@(String.Format("{0}, {1} {2}", @hotel.Address, @hotel.City, @hotel.State))</p>
+                                            </a>
+                                            <span class="stars">
+                                                @for (int i = 1; i <= 5; i++)
+                                                {
+                                                    var rating = hotel.PercentageRating / 20;
+                                                    if (i <= rating)
+                                                    {
+                                                        <i class="fa fa-star star-color"></i>
+                                                    }
+                                                    else if (i > rating && (rating % 1) > 0 && i == ((int)rating + 1))
+                                                    {
+                                                        <i class="fas fa-star-half-alt star-color mr-1"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="far fa-star star-color mr-1"></i>
+                                                    }
+                                                }
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="Transaction-chart pt-5 pb-5 card">
+    <div class="card-header d-flex justify-content-between align-items-center m-3">
+        <div class="card-title">
+            Transactions
+        </div>
+        <div class="form-group">
+            <input type="checkbox" id="total" name="total" value="Total">
+            <label for="total">Total</label>
+        </div>
+    </div>
+    <div class="row d-flex m-3">
+        <div class="container">
+            <canvas id="myLineChart" width="800" height="200"></canvas>
+        </div>
+    </div>
+</div>
+<div class="row pt-5 pb-5">
+    <div class="col-md-4">
+        <div class="card pt-4">
+            <div class="card-header pb-4">
+                <div id="my-calendar"></div>
+            </div>
+            <div class="card-body pt-4 pb-5 d-flex justify-content-between">
+                <button id="calendar_cancel" type="button">Cancel</button>
+                <button id="calendar_done" type="button"> Done </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title mt-4 mb-0 pb-0">
+                    Hotels By Location
+                </h2>
+            </div>
+            <div class="row d-flex  mt-0 pt-0">
+                <div class="container mb-2">
+                    <canvas id="pieChart" width="200" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+		
+
+
+
+@section Scripts {
+    <script>
+
+			const actions = [
+			{
+			name: 'Position: average',
+			handler(chart) {
+				chart.options.plugins.tooltip.position = 'average';
+				chart.update();
+			}
+			},
+			{
+			name: 'Position: nearest',
+			handler(chart) {
+				chart.options.plugins.tooltip.position = 'nearest';
+				chart.update();
+			}
+			},
+			{
+			name: 'Position: bottom (custom)',
+			handler(chart) {
+				chart.options.plugins.tooltip.position = 'bottom';
+				chart.update();
+			}
+			},
+	];
+
+
+			function RearrangeMonths(arr, n){
+				if(arr.length - 1 !== n){
+					let rightArr = arr.slice(0, n+1);
+					let leftArr = arr .slice(n - arr.length + 1);
+					return leftArr.concat(rightArr);
+				}
+				else {
+					return arr;
+				}
+
+			}
+
+			$(function() {
+
+				console.log("here");
+
+				// Variables
+				var months = @Html.Raw(Json.Serialize(Model.Months));
+				var revenues = @Html.Raw(Json.Serialize(Model.Revenues));
+
+				let date = new Date();
+				let currentMonth = date.getMonth();
+
+				var states = @Html.Raw(Json.Serialize(Model.States));
+				var hotelsCount = @Html.Raw(Json.Serialize(Model.TotalHotelsPerState));
+
+				// Line Chart
+				var ctx_line = document.getElementById("myLineChart").getContext("2d");
+				var transactionChart = new Chart(ctx_line, {
+					type: 'line',
+					data: {
+						labels: RearrangeMonths(months, currentMonth),
+						datasets: [{
+							data: RearrangeMonths(revenues, currentMonth),
+							backgroundColor: [
+								'#FFBB33',
+							],
+							borderColor: [
+								'#2067A1',
+							],
+							borderWidth: 1,
+							fill: true
+						}]
+				},
+				options: {
+					scale: {
+						y: {
+							beginAtZero: true
+						}
+					},
+					legend: {
+						display: false
+					},
+					plugins: {
+					  title: {
+						display: true
+					  },
+					}
+				}
+			});
+
+			// Pie Chart
+			var ctx_pie = document.getElementById('pieChart').getContext('2d');
+			var pieChart = new Chart(ctx_pie, {
+				type: 'pie',
+				data: {
+					labels: states,
+					datasets: [{
+						label: 'Location',
+						data: hotelsCount,
+						backgroundColor: [
+							'#2067A1',
+							'#FFBB33',
+							'#2ECC71',
+							'#3498DB',
+							'#95A5A6'
+						],
+					}]
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					tooltips: {
+						backgroundColor: "rgb(255,255,255)",
+						bodyFontColor: "#858796",
+						borderColor: '#dddfeb',
+						borderWidth: 1,
+						xPadding: 15,
+						yPadding: 15,
+						displayColors: false,
+						caretPadding: 10,
+						offset: 20
+
+					},
+					legend: {
+						display: false
+					},
+					plugins: {
+					  title: {
+						display: true
+					  },
+					}
+				}
+			});
+		});
+
+    </script>
+}
+
+

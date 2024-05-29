@@ -1,0 +1,19 @@
+﻿ @*@model*@
+@{ ViewData["Title"] = "Confirm Email";
+   }
+<div class="d-flex content-area">
+    <img src="~/images/Message Sent.svg" class="images" alt="Message sent icon" />
+    <p class="text-center recovery-instruction">
+        Verify your account by entering the 6 digit token sent your registered email.
+    </p>
+    <form class="form d-flex" method="post" asp-action="">
+        <div class="form-group mb-2">
+            <input type="text" class="form-control form-control-lg" placeholder="Token       ******" required />
+        </div>
+        <button type="submit" class="btn btn-block btn-lg w-100">Submit Code</button>
+        <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">
+            <p class="text-center recovery-instruction mt-4"><small>Didn't receive any mail? Click Here.</small></p>
+        </a>
+    </form>
+
+</div>

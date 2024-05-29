@@ -1,0 +1,12 @@
+﻿
+@media(max-width: 768px) {
+    .bg-image {
+        display: none !important;
+    }
+
+    #mgrLoginForm {
+        width: 80% !important;
+        margin: auto;
+    }
+}
+

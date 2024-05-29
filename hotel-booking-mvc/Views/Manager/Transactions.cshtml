@@ -1,0 +1,106 @@
+﻿@using hotel_booking_model.commons
+@model PaginationResponse<IEnumerable<ManagerTransactionsView>>;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    Task<PaginationResponse<IEnumerable<ManagerTransactionsView>>>
+*@
+@{
+    ViewData["Title"] = "Transactions";
+    SearchViewModel search = new SearchViewModel();
+}
+<div class="container-fluid mt-5 p-3">
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+
+
+                <div id="transaction mb-5">
+                    <div id="search-bar-row">
+                        <div class="d-sm-flex d-md-flex d-lg-flex justify-content-between flex-nowrap">
+                            <div id="search-bar-row">
+                                <div class="first-col">
+                                    <form class="d-none d-sm-none d-sm-flex d-md-flex d-lg-flex" method="post" asp-controller="Manager" asp-action="Transactions">
+                                        <img src="~/images/strawberry menu.png" style="height:20px">
+                                        <div class="bg-#2067A1; px-4">
+                                            <input type="text" id="searchquery" name="searchquery" asp-for="@search.SearchQuery" Placeholder="Search by Hotel">
+                                            <button type="submit" class="btn"><i class='bx bx-search'></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                       <div class="table-container p-1">
+
+
+                        </div>
+                    </div>
+                    <div class="second-third-col"></div>
+                </div>
+                <div id="label-row">
+                    <table class="table table-striped mt-4">
+                        <thead>
+                            <tr>
+                               
+                                <th scope="col">NAME</th>
+                                <th scope="col">SERVICE NAME</th>
+                                <th scope="col">TRANSACTION REFERENCE</th>
+                                <th scope="col">STATUS</th>
+                                <th scope="col">AMOUNT(&#8358)</th>
+                                <th scope="col">COMMISSION(&#8358)</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var transaction in Model.PageItems)
+                            {
+                                <tr>
+                                   
+                                    <td>@transaction.HotelName</td>
+                                    <td>@transaction.ServiceName</td>
+                                    <td>@transaction.BookingReference</td>
+                                    <td>
+                                        @if (transaction.PaymentStatus == true)
+                                        {
+                                            <button class="btn btn-primary btn-sm" style="border-radius: 15px; border: 2px solid; width: 80px; background: #2067A1">PAID</button>
+                                        }
+                                        else
+                                        {
+                                            <button class="bg-white btn btn-sm" style="border-radius: 15px; border: 1px solid; border-color: #2067A1; color: #2067A1; width: 80px;">UNPAID</button>
+                                        }
+                                    </td>
+                                    <td >@transaction.PaymentAmount.ToString("C", CultureInfo.GetCultureInfo("en-NG"))</td>
+                                    <td>@transaction.Commission.ToString("C", CultureInfo.GetCultureInfo("en-NG"))</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div> <!-- END label row -->
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="col-10 mx-auto mb-5 d-flex justify-content-center">
+    <nav aria-label="Pagination">
+        <ul class="pagination justify-content-center">
+            @for (int i = 1; i <= Model.NumberOfPages; i++)
+            {
+                if (i == Model.CurrentPage)
+                {
+                    <li class="page-item active" aria-current="page">
+                        <span class="page-link" asp-route-pageNumber=@i style="background-color: #2067A1; border-color: #2067A1; ">@i</span>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" asp-route-pageNumber=@i style="color:black" a>@i</a></li>
+                }
+            }
+        </ul>
+    </nav>
+</div>
+
+</div>

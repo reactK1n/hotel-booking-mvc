@@ -1,0 +1,130 @@
+﻿@{
+    Layout = "~/Views/Shared/_RegisterManager.cshtml";
+}
+
+<div class="container py-4">
+    <div class="row">
+        <div class="col-lg-5 col-md-5 d-none d-sm-none d-sm-flex d-md-flex d-lg-flex m-0 p-0">
+            <img src="~/images/Login.png" alt="login" class="img-fluid" />
+        </div>
+        <div class="col-sm-12 col-lg-7 mt-sm-4 ps-4">
+            <div class="w-100 d-flex align-items-center justify-content-center mb-2">
+                <h1 class="h3">Manager Registration</h1>
+            </div>
+            <form class="flow-vr card px-4 py-4" id="managerRegistration">
+                <nav>
+                    <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist">
+                        <a class="nav-link active" id="step1-tab" data-bs-toggle="tab" href="#step1">Manager Details</a>
+                        <a class="nav-link" id="step2-tab" data-bs-toggle="tab" href="#step2">Company Details</a>
+                        <a class="nav-link" id="step3-tab" data-bs-toggle="tab" href="#step3">Hotel Details</a>
+                    </div>
+                </nav>
+
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="step1">
+                        <div class="step flow-vr">
+                            <div>
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName">
+                            </div>
+                            <div>
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName">
+                            </div>
+                            <div>
+                                <label for="sex" class="form-label">Sex</label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Male</option>
+                                    <option value="2">Female</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" required>
+                            </div>
+                            <div>
+                                <label for="age" class="form-label">Age</label>
+                                <input type="text" class="form-control" id="age">
+                            </div>
+                            <div>
+                                <label for="state" class="form-label">State</label>
+                                <input type="text" class="form-control" id="state">
+                            </div>
+                            <div>
+                                <label for="accountName" class="form-label">Account Name</label>
+                                <input type="text" class="form-control" id="accountName">
+                            </div>
+                            <div>
+                                <label for="accountNumber" class="form-label">Account Number</label>
+                                <input type="text" class="form-control" id="accountNumber">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="step2">
+                        <div class="step flow-vr">
+                            <div>
+                                <label for="companyName" class="form-label">Company Name</label>
+                                <input type="text" class="form-control" id="companyName">
+                            </div>
+                            <div>
+                                <label for="businessEmail" class="form-label">Business Email</label>
+                                <input type="text" class="form-control" id="businessEmail">
+                            </div>
+                            <div>
+                                <label for="businessPhone" class="form-label">Business Phone</label>
+                                <input type="text" class="form-control" id="businessPhone">
+                            </div>
+                            <div>
+                                <label for="companyAddress" class="form-label">Company Address</label>
+                                <input type="text" class="form-control" id="companyAddress">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="step3">
+                        <div class="step flow-vr">
+                            <div>
+                                <label for="hotelName" class="form-label">Hotel Name</label>
+                                <input type="text" class="form-control" id="hotelName">
+                            </div>
+                            <div>
+                                <label for="hotelDescription" class="form-label">Hotel Description</label>
+                                <input type="text" class="form-control" id="hotelDescription">
+                            </div>
+                            <div>
+                                <label for="hotelEmail" class="form-label">Hotel Email</label>
+                                <input type="text" class="form-control" id="hotelEmail">
+                            </div>
+                            <div>
+                                <label for="hotelPhone" class="form-label">Hotel Phone</label>
+                                <input type="text" class="form-control" id="hotelPhone">
+                            </div>
+                            <div>
+                                <label for="hotelAddress" class="form-label">Hotel Address</label>
+                                <input type="text" class="form-control" id="hotelAddress">
+                            </div>
+                            <div>
+                                <label for="hotelCity" class="form-label">Hotel City</label>
+                                <input type="text" class="form-control" id="hotelCity">
+                            </div>
+                            <div>
+                                <label for="hotelState" class="form-label">Hotel State</label>
+                                <input type="text" class="form-control" id="hotelState">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row justify-content-between">
+                    <div class="col-auto"><button type="button" class="btn btn-secondary" data-enchanter="previous">Previous</button></div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-primary" data-enchanter="next">Next</button>
+                        <button type="submit" class="btn btn-primary" data-enchanter="finish">Finish</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

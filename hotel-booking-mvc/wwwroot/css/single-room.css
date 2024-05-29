@@ -1,0 +1,89 @@
+﻿body {
+}
+
+#hotel-name {
+    font-family: Aribau Grotesk;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 33px;
+    line-height: 43px;
+    letter-spacing: 0.03em;
+    margin-right: .5em;
+}
+
+#ratings {
+    padding: 0.4em 1em;
+    background: rgba(0, 178, 139, 0.1);
+    border-radius: 0.5em;
+    font-family: Aribau Grotesk;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    color: #00B28B;
+}
+
+.fa-caret-up {
+    font-size: 20px;
+}
+
+.room-image {
+    height: 60vh;
+    width: 100%;
+    object-fit: cover;
+}
+
+.location {
+    font-size: 20px;
+}
+
+.carousel-item img {
+    width: 200px;
+    height: 200px;
+    object-fit: scale-down;
+}
+
+.room-description {
+    font-family: Aribau Grotesk;
+    font-style: normal;
+    font-size: 20px;
+    text-align: justify;
+    text-justify: auto;
+}
+
+.content-container {
+    width: 90%;
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    flex-flow: column;
+    margin: 0 auto;
+}
+
+.card-description {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    padding-left: 1.5em;
+}
+
+    .card-description h4 {
+        font-size: 20px;
+        font-style: normal;
+    }
+
+.card-container {
+    padding: 2em;
+    background: rgba(23, 55, 82, 0.06);
+}
+
+.card-image {
+    padding-right: 1.5em;
+    border-right: 1px solid black;
+}
+
+.img-fluid {
+    width: 150px;
+    height: 100px;
+}

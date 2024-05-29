@@ -1,0 +1,180 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @{
+        ViewData["Title"] = "Index";
+    }
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="@Url.Content("~/css/landingview.css")" rel="stylesheet" type="text/css" />
+
+
+    <script src="~/js/landingpage.js" asp-append-version="true"></script>
+    <link href="//db.onlinewebfonts.com/c/ddb4daa06f2d44fdbfdeb2ef47cb4a58?family=Aribau+Grotesk" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+
+<body style="background: #E3ECF7">
+
+    @{ var name = Model;
+
+        List<string> hotelNames = new List<string>();
+        List<string> hotelAddress = new List<string>();
+        List<string> hotelImage = new List<string>();
+        foreach (var item in name)
+        {
+            hotelNames.Add(item.Name);
+            hotelAddress.Add(item.Address);
+            hotelImage.Add(item.Thumbnail);
+        }
+    }
+
+
+
+    <div class="container-fluid">
+        <div class="first-cover" style="display:grid; grid-template-columns: 3fr 1fr !important; grid-column-gap: 2rem;">
+            <div class="first-cover-write-up">
+                <div class="first-cover-heading">
+                    <h2 class="head">Affordable Luxury Meets Convenience</h2>
+                </div>
+                <div class="first-cover-paragraph" style="width:15rem;">
+                    <p>
+                        Make bookings conveniently, from a collection of luxury hotels
+                        spanned accross the country.
+                    </p>
+                </div>
+
+            </div>
+            <div class="first-cover-picture">
+                <div class="covered-picture"></div>
+                <div class="opened-picture" style="background: url(https://www.godsavethepoints.com/wp-content/uploads/2017/07/andaz-tokyo5.jpg); background-size: cover;">
+                </div>
+            </div>
+        </div>
+        <div class="second-cover" style="margin-top:1rem;">
+            <!-- <div class="second"> -->
+            <h3 class="second-cover-heading">Top Deals</h3>
+            <p class="second-cover-paragraph" style="margin-bottom: 20px">Amazing offers only for you</p>
+            <!-- </div> -->
+
+
+
+            <div class="second-cover-images" style="padding-bottom: 10px; margin-bottom: 30px !important">
+                <img src="@hotelImage[0]" alt="" class="first">
+                <img src="@hotelImage[4]" alt="" class="second">
+                <img src="@hotelImage[2]" alt="" class="third">
+
+
+
+            </div>
+
+        </div>
+
+        <div class="row" style=" width: 100% !important; margin: 0px auto 0 auto; background: #E3ECF7;">
+            <h3 class="second-cover-heading" style="padding-bottom: 10px; text-align:center; margin: 0px 0 !important">
+                Hotels Across Nigeria
+            </h3>
+        </div>
+
+        <div class="wrapper-cover" style="margin-top:-4rem">
+
+            <div class="wrapper" style=" margin-top: 4rem;">
+
+                <div class="grid-class one" style="background: linear-gradient(rgba(0, 0, 0, .5),rgba(0, 0, 0, .5)),url( @hotelImage[0] ); background-size: cover; ">
+                    <h5 class="hotel-name">@hotelNames[0]</h5>
+                    <p class="hotel-names">@hotelAddress[0]</p>
+                </div>
+                <div class="grid-class two" style="background: linear-gradient(rgba(0, 0, 0, .5),rgba(0, 0, 0, .5)),url( @hotelImage[1] ); background-size: cover">
+                    <h5 class="hotel-name">@hotelNames[1]</h5>
+                    <p class="hotel-names">@hotelAddress[1]</p>
+                </div>
+                <div class="grid-class three" style="background: linear-gradient(rgba(0, 0, 0, .5),rgba(0, 0, 0, .5)), url( @hotelImage[2] ); background-size: cover">
+                    <h5 class="hotel-name">@hotelNames[2]</h5>
+                    <p class="hotel-names">@hotelAddress[2]</p>
+                </div>
+                <div class="grid-class four" style="background: linear-gradient(rgba(0, 0, 0, .5),rgba(0, 0, 0, .5)), url( @hotelImage[3] );
+                background-size: cover">
+                    <h5 class="hotel-name">@hotelNames[3]</h5>
+                    <p class="hotel-names">@hotelAddress[3]</p>
+                </div>
+                <div class="grid-class five" style="background: linear-gradient(rgba(0, 0, 0, .5),rgba(0, 0, 0, .5)),url( @hotelImage[4] ); background-size: cover">
+                    <h5 class="hotel-name">@hotelNames[4]</h5>
+                    <p class="hotel-names">@hotelAddress[4]</p>
+                </div>
+                <div class="grid-class six" style="background: linear-gradient(rgba(0, 0, 0, .5),rgba(0, 0, 0, .5)),url( @hotelImage[0] ); background-size: cover">
+                    <h5 class="hotel-name">@hotelNames[0]</h5>
+                    <p class="hotel-names">@hotelAddress[0]</p>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="third-cover">
+            <div class="wrapper2">
+                <div class="wrapper-class-one" style="background: src(https://www.pexels.com/photo/workplace-with-clipboard-and-green-plant-leaf-5797908/);
+                padding-top: 4rem;">
+
+
+                    <h3 class="quote" style="color: white; text-justify:trim; font-size: 1.5em;">
+                        "Everything is a luxury, this begins with being in this world."
+                        <br /><i>Cesare Pavese</i>
+                    </h3>
+
+                </div>
+                <div class="wrapper-class-two"></div>
+            </div>
+        </div>
+        <div class="forth-cover">
+            <div class="contact-message">
+                <h1 class="contact-us">Contact Us</h1>
+            </div>
+            <form class="message-form" action="" style="display:flex; flex-direction: column; align-items: center;">
+                <textarea class="text-area" rows="6" cols="66">Enter your comment here...</textarea><br />
+                <input class="message-input" type="email" placeholder="Email" required><br />
+                <button class="submit" type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div class="footer-cover">
+            <div class="footer-cover-item">
+                <h3>About Us</h3>
+                <p>We bridge the gap between customers and hotel owners by connecting luxury to business through tech.</p>
+            </div>
+            <div class="footer-cover-item" id="footer">
+                <h3>Reach Us</h3>
+                <ul>
+                    <li><p><i class="fa fa-envelope-o" aria-hidden="true"></i>  hello@hotelier.ng</p></li>
+                    <li><p><i class="fa fa-mobile" aria-hidden="true"></i>  +2348145951347</li>
+                    <li><p><i class="fa fa-map-marker" aria-hidden="true"></i>  Decagon HeadQuaters Lagos, Nigeria</p></li>
+                    <br />
+                    <li>
+                        <a style="text-decoration: none;color: white;" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a> &nbsp
+                        <a style="text-decoration: none;color: white;" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>&nbsp
+                        <a style="text-decoration: none;color: white;" href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>&nbsp
+                        <a style="text-decoration: none;color: white;" href="#"><i class="fa fa-google-plus" aria-hidden="true"></i> </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-cover-item">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a style="text-decoration: none;color: white;" href="#"> Portfolio</a></li>
+                    <li> <a style="text-decoration: none;color: white;" href="#"> Blogs</a></li>
+                    <li><a style="text-decoration: none;color: white;" href="#"> About</a></li>
+                    <li><a style="text-decoration: none;color: white;" href="#"> Press</a></li>
+                    <li><a style="text-decoration: none;color: white;" href="#"> Careers</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

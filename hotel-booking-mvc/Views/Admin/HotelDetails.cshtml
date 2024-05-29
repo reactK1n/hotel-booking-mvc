@@ -1,0 +1,129 @@
+﻿@{
+    HotelDetailsViewDTo SingleHotel = ViewData["GetHotel"] as HotelDetailsViewDTo;
+}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="card-title p-5 text-center" style="font-weight:900 !important; font-size: 35px !important">@SingleHotel.Name</h1>
+            <img style="width: 100%;" src=@SingleHotel.Gallery.FirstOrDefault() />
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="rooms-tab" data-bs-toggle="tab" data-bs-target="#rooms" type="button" role="tab" aria-controls="rooms" aria-selected="true">Rooms</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Reviews</button>
+                    </li>
+                    @*<li class="nav-item" role="presentation">
+                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+                        </li>*@
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="rooms" role="tabpanel" aria-labelledby="home-tab">
+                        <h6 class="mt-3">Room types</h6>
+                        @{
+                            foreach (var item in SingleHotel.RoomTypes)
+                            {
+                                <div class="card mt-4" >
+                                    <div class="row">
+                                        <div class="col-12 col-md-5">
+                                            
+                                            <img class="img-fluid" src=@item.Thumbnail />
+                                        </div>
+                                        <div class="col-12 col-md-7">
+                                            <div class="card-body">
+                                                <h5 class="card-title">@item.Name</h5>
+                                                
+                                                <p class="color__black__override mt-2">
+                                                    @item.Description
+                                                </p>
+
+                                                <ul class="color__black__override">
+                                                    <li>Air Conditioning</li>
+                                                    <li>Satellite TV</li>
+                                                    <li>World Desk</li>
+                                                </ul>
+
+                                                <div class="d-flex flex-row justify-content-between align-items-end w-100">
+                                                    <div class="wrapper__icon__group color__black__override" style="font-size: 2em;">
+                                                        <i class='bx bx-wifi'></i>
+                                                        <i class='bx bx-desktop'></i>
+                                                        <i class='bx bxs-coffee'></i>
+                                                    </div>
+                                                    <div class="blue__bg text-white px-3 py-2 rounded-3">
+                                                        <span>@item.Price.ToString("C", CultureInfo.GetCultureInfo("en-NG"))<br /> Per Night</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="profile-tab">
+                        <h6 class="mt-3">Rating Overview</h6>
+
+                        <div class="d-flex w-100 justify-content-between mt-4">
+                            <h5>Recent Guest Review</h5>
+                            <div>
+                                <b>Guest Rating</b>
+
+                            </div>
+                        </div>
+
+                        <div>
+                            @{
+                                foreach (var item in SingleHotel.Reviews)
+                                {
+                                    <div class="card mt-4">
+                                        <div class="row">
+                                            <div class="col-12 col-md-2">
+                                                <div class="d-flex flex-column mt-3 ms-4">
+                                                    <img src=@item.CustomerImage
+                                                         class="rounded-circle"
+                                                         width="75"
+                                                         height="75" />
+                                                    <span class="color__black__override">Katrina Jade</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-10">
+                                                <div class="card-body">
+                                                    <div>
+                                                        <div class="color__black__override">
+                                                            <span>
+                                                                @{
+                                                                    for (int j = 0; j < 5; j++)
+                                                                    {
+                                                                        <i class='bx bxs-star'></i>
+                                                                    }
+                                                                }
+                                                            </span>
+                                                            <span class="mx-2">|</span>
+                                                            <span><b>Reviewed: </b> <small>@item.Date</small></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <p class="w-80 mt-4 color__black__override">
+                                                        @item.Text
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
